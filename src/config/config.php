@@ -25,9 +25,8 @@ return array(
     } ,
 
     'set_cache' => function( $key , $value , $duration ){
-        $now = new \DateTime();
-        $to = $now->modify( '+ ' . (int) $duration . 's' );
-        return Cache::add( 'laravel-sms-' . $key , $value , $to );
+        $expiresAt = \Carbon\Carbon::now()->addSeconds( $duration );
+        return Cache::add( 'laravel-sms-' . $key , $value , $expiresAt );
     } ,
 
     'get_cache' => function( $key ){
