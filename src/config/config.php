@@ -20,7 +20,8 @@ return array(
         if( ! is_array( $context ) ){
             $context = [ 'context' => $context ];
         }
-        Log::$flag( $message , $context );
+        $context['flag'] = $flag;
+        Log::debug( $message , $context );
         return TRUE;
     } ,
 
